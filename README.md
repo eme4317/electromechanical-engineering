@@ -1,2 +1,0 @@
-# electromechanical-engineering
-Electromechanical Engineering
