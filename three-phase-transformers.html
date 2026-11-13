@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Bilingual English and Afaan Oromo lesson about three-phase transformers.">
+<title>Three-Phase Transformers | Electromechanical Engineering</title>
+<style>
+:root{--blue:#174ea6;--pale:#eef4ff;--ink:#202938;--muted:#5d6878;--line:#d9e1ee}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;line-height:1.65;color:var(--ink);background:#f7f9fc}
+header{background:linear-gradient(120deg,#123b75,#2473b9);color:white;padding:28px 18px}
+header .wrap,main,.footer{max-width:900px;margin:auto}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.2;margin:8px 0}
+header p{margin:8px 0}.tag{display:inline-block;background:#ffffff22;border:1px solid #ffffff66;border-radius:20px;padding:4px 11px;font-size:.85rem}
+main{padding:18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 18px}
+button,.back{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:700;text-decoration:none;cursor:pointer}
+button.secondary{background:#e7edf7;color:#18385f}
+.card{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0;box-shadow:0 3px 12px #1b35520b}
+h2{color:var(--blue);font-size:1.35rem;margin-top:0}h3{margin-bottom:5px}
+.muted{color:var(--muted)}.diagram{background:#f3f7fd;border-radius:12px;padding:14px;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.formula{background:var(--pale);padding:12px;border-left:4px solid var(--blue);border-radius:7px;font-weight:700;overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{background:var(--pale)}
+li{margin:5px 0}.quiz-q{padding:12px 0;border-bottom:1px solid var(--line)}
+label{display:block;margin:6px 0}#result{font-weight:700;margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:25px 15px}
+[lang="om"]{display:none}.show-om [lang="om"]{display:block}.show-om [lang="en"]{display:none}
+@media(min-width:650px){main{padding:26px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="tag">Tutorial 02 · Electrical Engineering</span>
+<h1>Three-Phase Transformers</h1>
+<p>Construction, working principle, connections, calculations and safety</p>
+<p lang="om">Tiraansfoormara Faazii Sadii: ijaarsa, akkaataa hojii, walqabsiisa, shallaggii fi nageenya</p>
+</div></header>
+<main id="lesson">
+<div class="toolbar">
+<button onclick="document.body.classList.toggle('show-om');this.textContent=document.body.classList.contains('show-om')?'Show English':'Show Afaan Oromo'">Show Afaan Oromo</button>
+<button class="secondary" onclick="window.print()">Print / Save PDF</button>
+</div>
+<section class="card">
+<h2>1. Learning objectives</h2>
+<div lang="en"><p>After this lesson, you should be able to:</p><ul><li>Define a transformer and explain electromagnetic induction.</li><li>Identify the main parts of a three-phase transformer.</li><li>Recognize star and delta connections.</li><li>Calculate turns ratio and three-phase apparent power.</li></ul></div>
+<div lang="om"><p>Barnoota kana booda:</p><ul><li>Tiraansfoormara ibsuu fi induction elektiroomaagneetawaa hubachuu.</li><li>Qaamolee tiraansfoormara faazii sadii adda baasuu.</li><li>Walqabsiisa Star fi Delta beekuu.</li><li>Reeshoo marsaa fi humna mul'ataa shallaguu.</li></ul></div>
+</section>
+<section class="card">
+<h2>2. What is a transformer?</h2>
+<div lang="en"><p>A transformer is a static electrical device that transfers AC electrical energy from one circuit to another through a changing magnetic field. It can increase or decrease voltage while the frequency remains the same.</p><p>A three-phase transformer is used in three-phase power systems, such as substations, factories and large commercial buildings.</p></div>
+<div lang="om"><p>Tiraansfoormarri meeshaa elektirikii socho'aa hin taane yoo ta'u, anniisaa elektirikii AC marsaa tokko irraa gara marsaa biraatti dirree maagneetawaa jijjiiramuun dabarsa. Inni volteejii ol kaasuu ykn gadi buusuu danda'a; garuu frequency isaa hin jijjiiru.</p><p>Tiraansfoormarri faazii sadii buufataalee humnaa, warshaalee fi gamoowwan gurguddoo keessatti fayyada.</p></div>
+<div class="diagram">
+<svg viewBox="0 0 680 245" role="img" aria-label="Simplified transformer diagram">
+<rect x="20" y="20" width="640" height="205" rx="14" fill="#fff" stroke="#cbd7e8"/>
+<rect x="270" y="48" width="140" height="150" rx="8" fill="#e5edf8" stroke="#315b91" stroke-width="9"/>
+<path d="M280 72h120 M280 174h120" stroke="#315b91" stroke-width="8"/>
+<path d="M230 70c-35 0-35 24 0 24s35 24 0 24-35 24 0 24 35 24 0 24" fill="none" stroke="#d97706" stroke-width="7"/>
+<path d="M450 70c35 0 35 24 0 24s-35 24 0 24 35 24 0 24 35 24 0 24" fill="none" stroke="#16805d" stroke-width="7"/>
+<text x="115" y="48" font-size="17" fill="#8a4b00">Primary winding</text><text x="460" y="48" font-size="17" fill="#126447">Secondary winding</text>
+<text x="340" y="125" font-size="17" text-anchor="middle" fill="#20324b">Magnetic core</text>
+<text x="110" y="205" font-size="14" fill="#596579">AC input</text><text x="520" y="205" font-size="14" fill="#596579">AC output</text>
+</svg>
+<p class="muted">Simplified single-phase principle diagram; a three-phase unit has three phase windings.</p>
+</div>
+</section>
+<section class="card">
+<h2>3. Main parts</h2>
+<table><tr><th>Part</th><th>Function</th></tr>
+<tr><td>Magnetic core</td><td>Provides a low-reluctance path for magnetic flux.</td></tr>
+<tr><td>Primary winding</td><td>Receives electrical energy from the supply.</td></tr>
+<tr><td>Secondary winding</td><td>Delivers transformed electrical energy to the load.</td></tr>
+<tr><td>Insulation</td><td>Separates windings and live parts electrically.</td></tr>
+<tr><td>Tank and cooling system</td><td>Protects the active parts and removes heat in oil-filled units.</td></tr>
+<tr><td>Bushings</td><td>Provide insulated terminals through the tank.</td></tr></table>
+<div lang="om"><p><b>Qaamolee ijoo:</b> Core (wiirtuu maagneetawaa), primary winding (marsaa galtee), secondary winding (marsaa ba'aa), insulation (adda baasaa), tank/cooling system (qodaa fi sirna qabbaneessaa), bushings (hidhaawwan insulaashinii).</p></div>
+</section>
+<section class="card">
+<h2>4. Working principle</h2>
+<div lang="en"><ol><li>AC current in the primary winding creates a changing magnetic flux in the core.</li><li>The changing flux links the secondary winding.</li><li>By electromagnetic induction, an AC voltage is induced in the secondary winding.</li><li>When a load is connected, current flows to the load.</li></ol></div>
+<div lang="om"><ol><li>Yaanni AC marsaa primary keessa darbu flux maagneetawaa jijjiiramu uuma.</li><li>Flux jijjiiramu sun marsaa secondary waliin walitti hidhata.</li><li>Induction elektiroomaagneetawaan volteejii AC marsaa secondary keessatti uuma.</li><li>Yeroo load walqabsiifamu, yaanni elektirikii gara load ni darba.</li></ol></div>
+</section>
+<section class="card">
+<h2>5. Voltage and turns ratio</h2>
+<p>For an ideal transformer, voltage ratio is approximately equal to turns ratio:</p>
+<div class="formula">V₁ / V₂ = N₁ / N₂</div>
+<p>Where V₁ and V₂ are primary and secondary voltages; N₁ and N₂ are primary and secondary turns.</p>
+<div class="two"><div><h3>Step-down example</h3><p>Given: V₁ = 11,000 V, V₂ = 400 V.</p><p class="formula">Ratio = 11,000 / 400 = 27.5</p><p>The primary voltage is 27.5 times the secondary voltage.</p></div><div><h3>Afaan Oromo</h3><p>Tiraansfoormara step-down keessatti volteejii ba'aa volteejii galtee caalaa gadi-aanaa dha. Fakkeenya kana keessatti 11,000 V gara 400 Vtti gadi bu'a.</p></div></div>
+</section>
+<section class="card">
+<h2>6. Star and delta connections</h2>
+<div class="two"><div><h3>Star (Y)</h3><p>One end of each phase winding is connected to a common neutral point. A neutral conductor can be available.</p><p class="formula">V<sub>L</sub> = √3 × V<sub>ph</sub></p></div><div><h3>Delta (Δ)</h3><p>The three phase windings are connected end-to-end in a closed loop. There is no neutral point in a standard three-wire delta connection.</p><p class="formula">V<sub>L</sub> = V<sub>ph</sub></p></div></div>
+<div lang="om"><p><b>Star (Y):</b> Xumuriin marsaa sadii bakka giddugaleessaa tokko irratti walitti hidhamu; neutral argachuun ni danda'ama.</p><p><b>Delta (Δ):</b> Marsaaleen sadii walitti aananii marsaa cufamaa uumu. Delta sadarkaa sadii keessatti neutral hin jiru.</p></div>
+</section>
+<section class="card">
+<h2>7. Three-phase apparent power</h2>
+<div class="formula">S = √3 × V<sub>L</sub> × I<sub>L</sub></div>
+<p>S = apparent power in volt-amperes (VA), V<sub>L</sub> = line voltage (V), I<sub>L</sub> = line current (A).</p>
+<h3>Worked example</h3><p>A three-phase transformer supplies 400 V line voltage and 50 A line current.</p>
+<div class="formula">S = 1.732 × 400 × 50 = 34,640 VA ≈ 34.6 kVA</div>
+<div lang="om"><p>Fakkeenya: volteejii line 400 V fi yaa'insa line 50 A yoo ta'e, S = 1.732 × 400 × 50 = 34.6 kVA.</p></div>
+</section>
+<section class="card">
+<h2>8. Applications and maintenance</h2>
+<div lang="en"><p><b>Applications:</b> power transmission and distribution, industrial plants, commercial buildings, renewable-energy systems and isolation applications.</p><p><b>Basic maintenance checks:</b> inspect for oil leaks, unusual noise, overheating, damaged bushings, loose connections and abnormal readings. Follow the manufacturer's maintenance plan.</p></div>
+<div lang="om"><p><b>Fayyadama:</b> dabarsaafi raabsa humnaa, warshaalee, gamoowwan daldalaa fi sirna anniisaa haaromfamuu keessatti.</p><p><b>Sakatta'iinsa suphaa:</b> dhangala'aa zayitaa, sagalee hin baramne, ho'a garmalee, bushing miidhame, hidhaa laafaa fi safartuu hin baramne ilaali. Karoora oomishtuu hordofi.</p></div>
+</section>
+<section class="card">
+<h2>9. Electrical safety</h2>
+<ul><li>Only qualified and authorized personnel should work on transformer equipment.</li><li>Isolate all sources, apply lockout/tagout (LOTO), and verify absence of voltage before work.</li><li>Follow site procedures, use appropriate PPE, and maintain safe approach distances.</li><li>Never open or touch energized equipment.</li></ul>
+<div lang="om"><p>Meeshaa tiraansfoormaraa irratti hojjechuu kan qabu nama leenjii fi hayyama qabu qofa. Madda humnaa hunda adda baasi, LOTO hojiirra oolchi, hojii dura volteejii akka hin jirre mirkaneessi. PPE fi qajeelfama bakka hojii hordofi.</p></div>
+</section>
+<section class="card">
+<h2>10. Review questions</h2>
+<form id="quiz">
+<div class="quiz-q"><b>1. What does a transformer transfer between circuits?</b><label><input type="radio" name="q1" value="a"> Mechanical energy</label><label><input type="radio" name="q1" value="b"> AC electrical energy by electromagnetic induction</label><label><input type="radio" name="q1" value="c"> Fuel</label></div>
+<div class="quiz-q"><b>2. What is the ideal voltage ratio?</b><label><input type="radio" name="q2" value="a"> V₁/V₂ = N₁/N₂</label><label><input type="radio" name="q2" value="b"> V₁/V₂ = 0</label><label><input type="radio" name="q2" value="c"> V₁/V₂ = I₁ + I₂</label></div>
+<div class="quiz-q"><b>3. Which connection has a common neutral point?</b><label><input type="radio" name="q3" value="a"> Delta</label><label><input type="radio" name="q3" value="b"> Star</label><label><input type="radio" name="q3" value="c"> Neither</label></div>
+<div class="quiz-q"><b>4. Calculate S for 400 V and 50 A (approximately).</b><label><input type="radio" name="q4" value="a"> 2 kVA</label><label><input type="radio" name="q4" value="b"> 20 kVA</label><label><input type="radio" name="q4" value="c"> 34.6 kVA</label></div>
+<div class="quiz-q"><b>5. What should be verified before electrical maintenance?</b><label><input type="radio" name="q5" value="a"> Absence of voltage after isolation and LOTO</label><label><input type="radio" name="q5" value="b"> That the equipment is warm</label><label><input type="radio" name="q5" value="c"> Nothing</label></div>
+<button type="button" onclick="gradeQuiz()">Check answers</button><p id="result" aria-live="polite"></p>
+</form>
+<p class="muted">Answers: 1-B, 2-A, 3-B, 4-C, 5-A.</p>
+</section>
+<p><a class="back" href="index.html">← Back to Home</a></p>
+</main>
+<footer class="footer">Electromechanical Engineering · Learning resources in English and Afaan Oromo</footer>
+<script>
+function gradeQuiz(){const answers={q1:'b',q2:'a',q3:'b',q4:'c',q5:'a'};let score=0;for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(chosen&&chosen.value===a)score++;}document.getElementById('result').textContent='Your score: '+score+' / 5';}
+</script>
+</body>
+</html>
