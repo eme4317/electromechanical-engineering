@@ -25,6 +25,16 @@ section{padding:68px 0}.section-head{max-width:700px;margin-bottom:30px}.kicker{
 </style>
 </head>
 <body>
+  <section id="site-search" class="wrap">
+  <h2>Search Engineering Lessons</h2>
+  <input
+    type="search"
+    id="lessonSearch"
+    placeholder="Search motors, transformers, pumps..."
+    style="width:100%;padding:14px;border:1px solid #ccc;border-radius:8px;"
+  >
+  <div id="searchResults"></div>
+</section>
 <div class="top"><div class="wrap"><span>⚙️ Engineering knowledge • Practical learning • Career growth</span><span>English | Afaan Oromo</span></div></div>
 <header><nav class="wrap">
 <a class="brand" href="#"><span class="logo">EM</span><span>Electromechanical<br>Engineering</span></a>
@@ -127,5 +137,28 @@ section{padding:68px 0}.section-head{max-width:700px;margin-bottom:30px}.kicker{
 const btn=document.getElementById('language');let om=false;
 btn.addEventListener('click',()=>{om=!om;document.body.classList.toggle('om',om);document.documentElement.lang=om?'om':'en';btn.textContent=om?'English':'Afaan Oromo';document.querySelectorAll('[data-en]').forEach(el=>el.textContent=om?el.dataset.om:el.dataset.en)});
 document.getElementById('year').textContent=new Date().getFullYear();
+  const lessons = [
+  {title:"Electric Motors", url:"motors-basics.html", keywords:"motor types working principle electrical"},
+  {title:"Three-Phase Transformers", url:"three-phase-transformers.html", keywords:"transformer types connections electrical"},
+  {title:"Pumps and Compressors", url:"pumps-and-compressors.html", keywords:"pump compressor mechanical"}
+];
+
+const searchInput = document.getElementById('lessonSearch');
+const results = document.getElementById('searchResults');
+
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.toLowerCase().trim();
+  results.innerHTML = '';
+
+  if (!query) return;
+
+  const matches = lessons.filter(lesson =>
+    (lesson.title + ' ' + lesson.keywords).toLowerCase().includes(query)
+  );
+
+  results.innerHTML = matches.length
+    ? matches.map(lesson => `<p><a href="${lesson.url}">${lesson.title}</a></p>`).join('')
+    : '<p>No matching lessons found.</p>';
+});
 </script>
 </body></html>
